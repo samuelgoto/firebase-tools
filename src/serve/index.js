@@ -20,6 +20,7 @@ var _serve = function(options) {
       return target.start(options);
     })
   ).then(function() {
+    console.log("hello world");
     return new Promise(function(resolve) {
       process.on("SIGINT", function() {
         logger.info("Shutting down...");
