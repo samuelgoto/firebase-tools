@@ -20,20 +20,24 @@ var _serve = function(options) {
       return target.start(options);
     })
   ).then(function() {
-    console.log("hello world");
-    return new Promise(function(resolve) {
-      process.on("SIGINT", function() {
-        logger.info("Shutting down...");
-        return Promise.all(
-          _.forEach(targetNames, function(targetName) {
-            var target = TARGETS[targetName];
-            return target.stop(options);
-          })
-        )
-          .then(resolve)
-          .catch(resolve);
-      });
-    });
+    // console.log("hello world");
+    return {
+     shutdown() {
+      logger.info("Shutting down...");
+      return Promise.all(
+                         _.forEach(targetNames, function(targetName) {
+                           var target = TARGETS[targetName];
+                           return target.stop(options);
+                          })
+                         )
+       .then(resolve)
+       .catch(resolve);
+     }
+    };
+    //return new Promise(function(resolve) {
+    //  process.on("SIGINT", function() {
+    //  });
+    //});
   });
 };
 
