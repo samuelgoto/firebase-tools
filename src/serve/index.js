@@ -29,9 +29,9 @@ var _serve = function(options) {
                            var target = TARGETS[targetName];
                            return target.stop(options);
                           })
-                         )
-       .then(resolve)
-       .catch(resolve);
+                         );
+       //.then(resolve)
+       //.catch(resolve);
      }
     };
     //return new Promise(function(resolve) {
